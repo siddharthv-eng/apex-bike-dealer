@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html class="dark scroll-smooth" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>APEX MOTORRAD | Flagship Superbike Showroom & Telemetry Lab</title>
+  <meta name="description" content="Apex Motorrad: World-class homologated superbikes, dyno telemetry analytics, acoustic sound simulator, and high-performance concierge delivery."/>
+
+  <!-- Google Fonts: Syne, Inter, JetBrains Mono -->
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700;800&family=Syne:wght@600;700;800;900&display=swap" rel="stylesheet"/>
+
+  <!-- Material Symbols Outlined -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <!-- Tailwind CSS CDN with forms & container queries -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-secondary": "#690007",
+            "on-tertiary-container": "#282837",
+            "on-surface-variant": "#e9bcb9",
+            "surface-variant": "#353437",
+            "primary-fixed": "#ffdad7",
+            "on-error-container": "#ffdad6",
+            "surface-container-lowest": "#0e0e10",
+            "on-secondary-container": "#ffecea",
+            "primary-container": "#ff5355",
+            "surface-bright": "#39393b",
+            "on-tertiary": "#2f2f3e",
+            "on-tertiary-fixed": "#1a1a29",
+            "surface-container": "#201f21",
+            "inverse-on-surface": "#313032",
+            "background": "#0e0e10",
+            "on-error": "#690005",
+            "primary": "#ff1a35",
+            "secondary": "#ffb4ac",
+            "surface-tint": "#ffb3af",
+            "secondary-fixed": "#ffdad6",
+            "inverse-surface": "#e5e1e4",
+            "tertiary-container": "#908fa1",
+            "secondary-container": "#dc001c",
+            "on-surface": "#e5e1e4",
+            "on-primary-container": "#5c000a",
+            "on-secondary-fixed-variant": "#93000f",
+            "primary-fixed-dim": "#ffb3af",
+            "surface-dim": "#131315",
+            "inverse-primary": "#bf0021",
+            "error-container": "#93000a",
+            "surface-container-low": "#1c1b1d",
+            "error": "#ffb4ab",
+            "surface-container-highest": "#353437",
+            "on-secondary-fixed": "#410003",
+            "tertiary-fixed": "#e2e0f5",
+            "on-primary-fixed": "#410005",
+            "on-primary-fixed-variant": "#930017",
+            "outline": "#af8784",
+            "outline-variant": "#5e3f3d",
+            "tertiary-fixed-dim": "#c6c4d8",
+            "secondary-fixed-dim": "#ffb4ac",
+            "surface-container-high": "#2a2a2c",
+            "on-tertiary-fixed-variant": "#454556",
+            "on-background": "#e5e1e4",
+            "on-primary": "#68000d",
+            "surface": "#131315",
+            "tertiary": "#c6c4d8"
+          },
+          fontFamily: {
+            "headline-xl": ["Syne", "sans-serif"],
+            "headline-lg": ["Syne", "sans-serif"],
+            "headline-md": ["Syne", "sans-serif"],
+            "headline-sm": ["Syne", "sans-serif"],
+            "body-lg": ["Inter", "sans-serif"],
+            "body-md": ["Inter", "sans-serif"],
+            "body-sm": ["Inter", "sans-serif"],
+            "title-lg": ["Inter", "sans-serif"],
+            "title-md": ["Inter", "sans-serif"],
+            "metric-display": ["JetBrains Mono", "monospace"],
+            "label-md": ["JetBrains Mono", "monospace"],
+            "label-sm": ["JetBrains Mono", "monospace"]
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Apex Performance Styling -->
+  <link href="assets/css/apex.css" rel="stylesheet"/>
+</head>
+
+<body class="bg-background text-on-surface antialiased font-body-md overflow-x-hidden selection:bg-secondary-container selection:text-white">
+
+  <!-- ========================================================================= -->
+  <!-- 1. STICKY TOP NAVIGATION BAR (Brand Anchored)                             -->
+  <!-- ========================================================================= -->
+  <header class="top-0 sticky z-50 flex justify-between items-center w-full px-6 lg:px-12 h-20 bg-surface-container-lowest/90 backdrop-blur-md border-b border-surface-container-highest transition-all duration-200">
+    <!-- Brand Logo Anchor -->
+    <div class="flex items-center gap-6">
+      <a class="flex items-center gap-3 group focus:outline-none" href="#hero">
+        <img alt="APEX MOTORRAD" class="h-9 w-auto object-contain transition-transform duration-200 group-hover:scale-105" src="assets/images/logo.png" onerror="this.style.display='none'; document.getElementById('brandTextFallback').classList.remove('hidden');"/>
+        <div id="brandTextFallback" class="hidden flex items-center gap-2">
+          <span class="w-3 h-3 bg-secondary-container"></span>
+          <span class="text-headline-sm font-headline-sm text-white tracking-wider">APEX <span class="text-secondary-container">MOTORRAD</span></span>
+        </div>
+      </a>
+      
+      <!-- Live Track Status Pill -->
+      <div class="hidden xl:flex items-center gap-2 px-2.5 py-1 bg-surface-container border border-surface-container-highest">
+        <span class="w-1.5 h-1.5 rounded-full bg-secondary-container animate-ping"></span>
+        <span class="text-label-sm font-label-sm text-primary-fixed uppercase tracking-wider">HOMOLOGATION 2025 ACTIVE</span>
+      </div>
+    </div>
+
+    <!-- Navigation Links -->
+    <nav class="hidden lg:flex items-center space-x-6 xl:space-x-8">
+      <a class="text-primary font-label-md uppercase tracking-wider py-1 hover:text-white transition-colors" href="#hero">Showroom</a>
+      <a class="text-on-surface-variant font-label-md uppercase tracking-wider hover:text-white transition-colors py-1" href="#dyno-lab">Dyno Lab</a>
+      <a class="text-on-surface-variant font-label-md uppercase tracking-wider hover:text-white transition-colors py-1" href="#showroom">Machines</a>
+      <a class="text-on-surface-variant font-label-md uppercase tracking-wider hover:text-white transition-colors py-1" href="#matrix">Titan Shootout</a>
+      <a class="text-on-surface-variant font-label-md uppercase tracking-wider hover:text-white transition-colors py-1" href="#categories">Disciplines</a>
+      <a class="text-on-surface-variant font-label-md uppercase tracking-wider hover:text-white transition-colors py-1" href="#why-apex">Pillars</a>
+    </nav>
+
+    <!-- Trailing Actions & Search -->
+    <div class="flex items-center gap-3 sm:gap-4">
+      <!-- Quick Telemetry Search -->
+      <div class="relative hidden md:block">
+        <div class="flex items-center bg-surface-container-low border border-surface-container-highest px-3 py-1.5 focus-within:border-secondary-container transition-colors">
+          <span class="material-symbols-outlined text-outline text-lg mr-2">search</span>
+          <input class="bg-transparent border-0 p-0 text-body-sm font-body-sm text-on-surface placeholder:text-outline focus:ring-0 w-36 lg:w-44 focus:w-56 transition-all outline-none" id="telemetrySearchInput" placeholder="Search 998cc, V4R, M 1000..." type="text"/>
+          <kbd class="ml-2 px-1.5 py-0.5 text-[9px] font-label-sm bg-surface-container-highest text-on-surface-variant border border-outline-variant uppercase">/</kbd>
+        </div>
+      </div>
+
+      <!-- Paddock Garage Shortlist Trigger -->
+      <button class="flex items-center gap-2 px-3 py-2 bg-surface-container border border-surface-container-highest text-label-md font-label-md text-on-surface hover:border-secondary-container active:scale-[0.98] transition-all" onclick="ApexApp.openGarageDrawer()" title="View Saved Paddock Garage">
+        <span class="material-symbols-outlined text-secondary-container text-base">garage</span>
+        <span class="hidden xl:inline">GARAGE</span>
+        <span class="bg-secondary-container text-white px-1.5 py-0.2 text-[10px] font-label-sm font-bold" id="garageCountBadge">0</span>
+      </button>
+
+      <!-- Live Compare Tray Trigger Button -->
+      <button class="flex items-center gap-2 px-3 py-2 bg-surface-container border border-surface-container-highest text-label-md font-label-md text-on-surface hover:border-secondary-container active:scale-[0.98] transition-all" id="compareTrayBtn">
+        <span class="material-symbols-outlined text-secondary-container text-base">compare_arrows</span>
+        <span class="hidden sm:inline">COMPARE</span>
+        <span class="bg-secondary-container text-white px-1.5 py-0.2 text-[10px] font-label-sm font-bold" id="compareCountBadge">2</span>
+      </button>
+
+      <!-- Primary Action CTA -->
+      <button class="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-secondary-container text-white font-label-md text-label-md tracking-wider uppercase redline-glow hover:bg-on-secondary active:scale-[0.98] transition-all" onclick="ApexApp.openTestRideModal()">
+        <span class="material-symbols-outlined text-sm">sports_score</span>
+        <span>BOOK TEST RIDE</span>
+      </button>
+
+      <!-- Mobile Menu Toggle Button -->
+      <button class="lg:hidden p-2 text-on-surface hover:text-primary transition-colors focus:outline-none" id="mobileMenuBtn">
+        <span class="material-symbols-outlined text-2xl">menu</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Dropdown Nav Menu -->
+  <div class="hidden lg:hidden bg-surface-container-lowest border-b border-surface-container-highest px-6 py-4 space-y-3" id="mobileMenu">
+    <a class="block text-primary font-label-md uppercase tracking-wide py-2" href="#hero">Showroom</a>
+    <a class="block text-on-surface-variant font-label-md uppercase tracking-wide py-2" href="#dyno-lab">Dyno Lab</a>
+    <a class="block text-on-surface-variant font-label-md uppercase tracking-wide py-2" href="#showroom">Machines</a>
+    <a class="block text-on-surface-variant font-label-md uppercase tracking-wide py-2" href="#matrix">Compare Matrix</a>
+    <a class="block text-on-surface-variant font-label-md uppercase tracking-wide py-2" href="#categories">Rider Disciplines</a>
+    <a class="block text-on-surface-variant font-label-md uppercase tracking-wide py-2" href="#why-apex">Pillars</a>
+    <button class="w-full mt-2 py-2.5 bg-secondary-container text-white font-label-md uppercase text-center block redline-glow" onclick="ApexApp.openTestRideModal()">BOOK TEST RIDE</button>
+  </div>
+
+  <main>
+    <!-- ========================================================================= -->
+    <!-- 2. HERO SECTION ("RIDE BEYOND LIMITS")                                     -->
+    <!-- ========================================================================= -->
+    <section class="relative min-h-[92vh] flex items-center justify-center overflow-hidden bg-surface-container-lowest border-b border-surface-container-highest" id="hero">
+      <!-- Background Ambient Grid and Red Laser Corridor Lines -->
+      <div class="absolute inset-0 z-0 pointer-events-none opacity-40">
+        <div class="absolute top-1/4 left-0 right-0 h-[1px] hud-laser"></div>
+        <div class="absolute bottom-1/3 left-0 right-0 h-[1px] hud-laser"></div>
+        <div class="absolute inset-0 carbon-mesh opacity-20"></div>
+        <div class="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-secondary-container/15 blur-3xl"></div>
+        <div class="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-secondary-container/10 blur-3xl"></div>
+      </div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 py-12 lg:py-16 w-full">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          
+          <!-- Left Column: High-Impact Typography & Action Suite -->
+          <div class="lg:col-span-6 space-y-6">
+            <div class="inline-flex items-center gap-3 px-3 py-1 bg-surface-container-low border border-surface-container-highest">
+              <span class="w-2 h-2 rounded-full bg-secondary-container animate-pulse"></span>
+              <span class="text-label-sm font-label-sm text-secondary tracking-widest uppercase">FLAGSHIP HOMOLOGATION PROTOCOL</span>
+              <span class="text-outline-variant">|</span>
+              <span class="text-label-sm font-label-sm text-tertiary-fixed">STAGE 04 READY</span>
+            </div>
+
+            <div class="space-y-2">
+              <h1 class="text-headline-xl font-headline-xl text-on-surface uppercase tracking-tight leading-none text-4xl sm:text-6xl font-extrabold">
+                RIDE BEYOND <br/>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-secondary-container via-primary-container to-secondary-fixed drop-shadow-[0_0_20px_rgba(220,0,28,0.5)]">
+                  LIMITS.
+                </span>
+              </h1>
+              <p class="text-body-lg font-body-lg text-outline max-w-xl pt-2">
+                Experience the raw acoustic power, surgical precision, and adrenaline of elite superbike engineering. Born from WorldSBK aerodynamic wind tunnels and handcrafted titanium perfection.
+              </p>
+            </div>
+
+            <!-- CTAs with dynamic response -->
+            <div class="flex flex-wrap items-center gap-4 pt-2">
+              <a class="px-8 py-4 bg-secondary-container text-white font-label-md text-label-md tracking-wider uppercase redline-glow hover:bg-on-secondary active:scale-[0.98] transition-all flex items-center gap-3" href="#showroom">
+                <span class="material-symbols-outlined text-lg">electric_bolt</span>
+                <span>EXPLORE BIKES</span>
+              </a>
+
+              <button class="px-6 py-4 bg-surface-container-low border border-surface-container-highest text-on-surface font-label-md text-label-md uppercase tracking-wide hover:border-secondary-container active:scale-[0.98] transition-all flex items-center gap-3" id="exhaustSoundBtn" onclick="ApexApp.toggleAudioTelemetry()">
+                <span class="material-symbols-outlined text-secondary-container" id="soundIcon">volume_up</span>
+                <span id="soundLabel">DISCOVER ACOUSTIC NOTE</span>
+              </button>
+            </div>
+
+            <!-- Fast Telemetry Ribbon (HUD Bar) -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-surface-container-highest">
+              <div class="bg-surface-container-low border border-surface-container-highest p-3">
+                <span class="text-label-sm font-label-sm text-outline block">0-100 KM/H</span>
+                <span class="text-headline-sm font-metric-display text-on-surface font-bold text-xl">2.71<span class="text-xs text-secondary-container">s</span></span>
+              </div>
+              <div class="bg-surface-container-low border border-surface-container-highest p-3">
+                <span class="text-label-sm font-label-sm text-outline block">POWER/WEIGHT</span>
+                <span class="text-headline-sm font-metric-display text-on-surface font-bold text-xl">1.30 <span class="text-xs text-secondary-container">hp/kg</span></span>
+              </div>
+              <div class="bg-surface-container-low border border-surface-container-highest p-3">
+                <span class="text-label-sm font-label-sm text-outline block">MAX LEAN ANGLE</span>
+                <span class="text-headline-sm font-metric-display text-on-surface font-bold text-xl">62.4<span class="text-xs text-secondary-container">°</span></span>
+              </div>
+              <div class="bg-surface-container-low border border-surface-container-highest p-3">
+                <span class="text-label-sm font-label-sm text-outline block">AERO DOWNFORCE</span>
+                <span class="text-headline-sm font-metric-display text-on-surface font-bold text-xl">30<span class="text-xs text-secondary-container">kg@270</span></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Visual Stage with Motorcycle Hero -->
+          <div class="lg:col-span-6 relative">
+            <div class="relative rounded-none border border-surface-container-highest bg-surface-container p-2 overflow-hidden shadow-2xl group">
+              <!-- Technical Coordinate HUD Badges -->
+              <div class="absolute top-4 left-4 z-20 flex items-center gap-2">
+                <span class="px-2 py-0.5 bg-surface-container-lowest/90 border border-surface-container-highest text-label-sm font-label-sm text-primary">
+                  V4R // SPEC #0099
+                </span>
+                <span class="px-2 py-0.5 bg-secondary-container text-white text-label-sm font-label-sm font-bold animate-pulse">
+                  LIVE TELEMETRY
+                </span>
+              </div>
+
+              <div class="absolute bottom-4 right-4 z-20 text-right">
+                <span class="text-label-sm font-label-sm text-outline-variant block">CARBON MONOCOQUE CHASSIS</span>
+                <span class="text-label-md font-label-md text-on-surface font-bold">998cc DESMOSEDICI STRADALE</span>
+              </div>
+
+              <!-- Main Hero Photography Stage with Hotspots -->
+              <div class="relative overflow-hidden aspect-[16/10] bg-surface-container-lowest">
+                <img alt="Ducati Panigale V4R Flagship Race Bike in Dark Studio" 
+                     class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 ease-out" 
+                     id="heroBikeImg" 
+                     src="assets/images/hero-crimson-carbon.png" 
+                     onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuDlSEXAZn3Gw0ruSaPe3GKVidWER8S5HdWDsjvVMEn8JmbTmLBvM0I65EhZCXMZUeMgV2th7-pKViad5DS3QJdrQuX3wjvAuQrA_FJ4zWdKguNumDXPN7oyppOHjMVWJth1xC7vk26ZhhV-SHAzzYxdigQJDy3iNXN_kMCKsn8ZwtBg4p35UzIy331bmP-yf3UuixUQxMyEPzZtaGpjP-zJQZKDLsQjZ11bSV1Pil4'"/>
+
+                <!-- Interactive Hotspots Overlay -->
+                <button class="absolute top-[38%] left-[24%] z-30 group/hotspot focus:outline-none" id="hotspot1" title="Carbon Aero Biplane Winglets">
+                  <span class="relative flex h-5 w-5">
+                    <span class="hotspot-ring absolute inline-flex h-full w-full rounded-full bg-secondary-container opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-5 w-5 bg-secondary-container items-center justify-center text-[9px] font-bold text-white">1</span>
+                  </span>
+                </button>
+
+                <button class="absolute top-[68%] left-[22%] z-30 group/hotspot focus:outline-none" id="hotspot2" title="Brembo Stylema Calipers">
+                  <span class="relative flex h-5 w-5">
+                    <span class="hotspot-ring absolute inline-flex h-full w-full rounded-full bg-secondary-container opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-5 w-5 bg-secondary-container items-center justify-center text-[9px] font-bold text-white">2</span>
+                  </span>
+                </button>
+
+                <button class="absolute top-[48%] left-[32%] z-30 group/hotspot focus:outline-none" id="hotspot3" title="Öhlins Smart EC 2.0 Gas Fork">
+                  <span class="relative flex h-5 w-5">
+                    <span class="hotspot-ring absolute inline-flex h-full w-full rounded-full bg-secondary-container opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-5 w-5 bg-secondary-container items-center justify-center text-[9px] font-bold text-white">3</span>
+                  </span>
+                </button>
+
+                <button class="absolute top-[72%] right-[28%] z-30 group/hotspot focus:outline-none" id="hotspot4" title="Akrapovič Titanium Racing Exhaust">
+                  <span class="relative flex h-5 w-5">
+                    <span class="hotspot-ring absolute inline-flex h-full w-full rounded-full bg-secondary-container opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-5 w-5 bg-secondary-container items-center justify-center text-[9px] font-bold text-white">4</span>
+                  </span>
+                </button>
+
+                <!-- Overlay Telemetry Reticles -->
+                <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent opacity-80 pointer-events-none"></div>
+                <div class="absolute top-1/2 left-8 transform -translate-y-1/2 hidden md:block pointer-events-none">
+                  <div class="w-24 h-[1px] bg-secondary-container/60 mb-1"></div>
+                  <span class="text-[10px] font-label-sm text-secondary-container uppercase tracking-widest">DRY WEIGHT: 167 KG</span>
+                </div>
+                <div class="absolute top-1/3 right-8 transform -translate-y-1/2 hidden md:block text-right pointer-events-none">
+                  <div class="w-24 h-[1px] bg-secondary-container/60 ml-auto mb-1"></div>
+                  <span class="text-[10px] font-label-sm text-secondary-container uppercase tracking-widest">218 HP @ 15,500 RPM</span>
+                </div>
+              </div>
+
+              <!-- Live Aero Winglet Pulse Indicator -->
+              <div class="p-3 bg-surface-container-low border-t border-surface-container-highest flex items-center justify-between text-label-sm font-label-sm">
+                <div class="flex items-center gap-2 text-on-surface-variant">
+                  <span class="material-symbols-outlined text-secondary-container text-sm">speed</span>
+                  <span>RECORD BENCHMARK: MUGELLO 1:49.882</span>
+                </div>
+                <span class="text-tertiary">GEN-4 BOSCH CORNERING EVO</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 3. INTERACTIVE DYNO TUNING LAB & TELEMETRY CURVE ANALYZER                -->
+    <!-- ========================================================================= -->
+    <section class="py-16 bg-surface-container-low border-b border-surface-container-highest" id="dyno-lab">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+          <div>
+            <div class="flex items-center gap-2 text-secondary-container text-label-md font-label-md uppercase mb-2">
+              <span class="material-symbols-outlined text-sm">tune</span>
+              <span>CERTIFIED DYNOJET CELL 04</span>
+            </div>
+            <h2 class="text-headline-lg font-headline-lg text-on-surface uppercase text-3xl font-bold">TELEMETRY & DYNO POWER CURVE</h2>
+            <p class="text-body-md font-body-md text-outline mt-1 max-w-xl">
+              Real-time horsepower and torque trajectories mapped across the entire rev band. Select any homologated machine to load factory dyno telemetry.
+            </p>
+          </div>
+
+          <!-- Dyno Machine Selector -->
+          <div class="flex items-center gap-3">
+            <label class="text-label-sm font-label-sm text-outline uppercase">SELECT ENGINE MAP:</label>
+            <select class="bg-surface-container border border-surface-container-highest text-on-surface text-label-sm font-label-sm px-3 py-2 uppercase focus:border-secondary-container outline-none" id="dynoBikeSelect">
+              <!-- Injected by JavaScript -->
+            </select>
+          </div>
+        </div>
+
+        <!-- Dyno Visualization Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+          <!-- Canvas Graph Container -->
+          <div class="lg:col-span-8 bg-surface-container border border-surface-container-highest p-4 relative overflow-hidden">
+            <div class="flex items-center justify-between mb-2 pb-2 border-b border-surface-container-highest">
+              <span class="text-label-sm font-label-sm text-secondary-container uppercase flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+                HORSEPOWER (CRIMSON) &amp; TORQUE (WHITE)
+              </span>
+              <span class="text-label-sm font-label-sm text-outline">ATMOSPHERIC PRESSURE: 1013.2 hPa // 21°C</span>
+            </div>
+            <canvas id="dynoCanvas" class="w-full h-72 block"></canvas>
+          </div>
+
+          <!-- Dyno Real-time Metrics Card -->
+          <div class="lg:col-span-4 bg-surface-container border border-surface-container-highest p-6 flex flex-col justify-between space-y-6">
+            <div>
+              <span class="text-label-sm font-label-sm text-secondary-container uppercase block mb-1">DYNO READOUT SPECIFICATIONS</span>
+              <h3 class="text-headline-sm font-headline-sm text-on-surface uppercase">MEASURED AT WHEEL</h3>
+            </div>
+
+            <div class="space-y-4">
+              <div class="p-3 bg-surface-container-low border border-surface-container-highest">
+                <span class="text-label-sm font-label-sm text-outline block">PEAK WHEEL HORSEPOWER</span>
+                <span class="text-headline-md font-metric-display text-secondary-container font-bold text-2xl" id="dynoPeakHp">218 HP @ 15,500 RPM</span>
+              </div>
+
+              <div class="p-3 bg-surface-container-low border border-surface-container-highest">
+                <span class="text-label-sm font-label-sm text-outline block">MAX DELIVERED TORQUE</span>
+                <span class="text-headline-md font-metric-display text-on-surface font-bold text-2xl" id="dynoPeakTq">111.3 Nm @ 12,000 RPM</span>
+              </div>
+
+              <div class="p-3 bg-surface-container-low border border-surface-container-highest">
+                <span class="text-label-sm font-label-sm text-outline block">REV LIMITER THRESHOLD</span>
+                <span class="text-headline-md font-metric-display text-primary-fixed font-bold text-2xl" id="dynoRedline">16,000 RPM</span>
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <button class="w-full py-3 bg-secondary-container text-white font-label-md text-label-md uppercase tracking-wider redline-glow hover:bg-on-secondary transition-all" onclick="ApexApp.openTestRideModal(ApexApp.state.activeDynoBike)">
+                BOOK PROVING SESSION
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 4. FEATURED BIKES SECTION (Interactive Showroom & Filter Matrix)          -->
+    <!-- ========================================================================= -->
+    <section class="py-20 px-6 lg:px-12 max-w-7xl mx-auto" id="showroom">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 border-b border-surface-container-highest pb-8">
+        <div>
+          <div class="flex items-center gap-2 text-secondary-container text-label-md font-label-md uppercase mb-2">
+            <span class="material-symbols-outlined text-sm">sports_motorsports</span>
+            <span>HOMOLOGATION FLEET ALLOCATIONS</span>
+          </div>
+          <h2 class="text-headline-lg font-headline-lg text-on-surface uppercase text-3xl font-bold">FEATURED MACHINES</h2>
+          <p class="text-body-md font-body-md text-outline mt-1 max-w-2xl">
+            Explore track-verified superbikes, stripped streetfighters, crossplane titans, and electric hyper-bikes calibrated for zero compromise.
+          </p>
+        </div>
+
+        <!-- Live Active Count & Filter Indicators -->
+        <div class="flex items-center gap-4">
+          <div class="flex items-center gap-2">
+            <label class="text-label-sm font-label-sm text-outline uppercase hidden sm:inline">SORT BY:</label>
+            <select class="bg-surface-container border border-surface-container-highest text-on-surface text-label-sm font-label-sm px-3 py-2 uppercase focus:border-secondary-container outline-none" id="showroomSortSelect">
+              <option value="default">RECOMMENDED ALLOCATIONS</option>
+              <option value="power-desc">OUTPUT: HIGHEST HP</option>
+              <option value="speed-desc">TOP SPEED: FASTEST</option>
+              <option value="weight-asc">DRY WEIGHT: LIGHTEST</option>
+              <option value="price-asc">PRICE: LOWEST FIRST</option>
+              <option value="price-desc">PRICE: HIGHEST FIRST</option>
+            </select>
+          </div>
+          <span class="px-2.5 py-1 bg-surface-container-high border border-surface-container-highest font-metric-display text-primary-fixed text-sm font-bold" id="allocationCounter">12 VERIFIED</span>
+        </div>
+      </div>
+
+      <!-- Filter Controls: Manufacturer Pills -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none" id="brandFilterContainer">
+        <button class="brand-filter-btn px-4 py-2 bg-secondary-container text-white text-label-sm font-label-sm uppercase tracking-wider transition-all" data-brand="all" onclick="ApexApp.filterByBrand('all')">ALL BRANDS</button>
+        <button class="brand-filter-btn px-4 py-2 bg-surface-container-low border border-surface-container-highest text-on-surface-variant hover:border-secondary-container text-label-sm font-label-sm uppercase tracking-wider transition-all" data-brand="Ducati" onclick="ApexApp.filterByBrand('Ducati')">DUCATI</button>
+        <button class="brand-filter-btn px-4 py-2 bg-surface-container-low border border-surface-container-highest text-on-surface-variant hover:border-secondary-container text-label-sm font-label-sm uppercase tracking-wider transition-all" data-brand="BMW" onclick="ApexApp.filterByBrand('BMW')">BMW MOTORRAD</button>
+        <button class="brand-filter-btn px-4 py-2 bg-surface-container-low border border-surface-container-highest text-on-surface-variant hover:border-secondary-container text-label-sm font-label-sm uppercase tracking-wider transition-all" data-brand="Kawasaki" onclick="ApexApp.filterByBrand('Kawasaki')">KAWASAKI</button>
+        <button class="brand-filter-btn px-4 py-2 bg-surface-container-low border border-surface-container-highest text-on-surface-variant hover:border-secondary-container text-label-sm font-label-sm uppercase tracking-wider transition-all" data-brand="Yamaha" onclick="ApexApp.filterByBrand('Yamaha')">YAMAHA</button>
+        <button class="brand-filter-btn px-4 py-2 bg-surface-container-low border border-surface-container-highest text-on-surface-variant hover:border-secondary-container text-label-sm font-label-sm uppercase tracking-wider transition-all" data-brand="KTM" onclick="ApexApp.filterByBrand('KTM')">KTM RACING</button>
+        <button class="brand-filter-btn px-4 py-2 bg-surface-container-low border border-surface-container-highest text-on-surface-variant hover:border-secondary-container text-label-sm font-label-sm uppercase tracking-wider transition-all" data-brand="Aprilia" onclick="ApexApp.filterByBrand('Aprilia')">APRILIA</button>
+        <button class="brand-filter-btn px-4 py-2 bg-surface-container-low border border-surface-container-highest text-on-surface-variant hover:border-secondary-container text-label-sm font-label-sm uppercase tracking-wider transition-all" data-brand="Triumph" onclick="ApexApp.filterByBrand('Triumph')">TRIUMPH</button>
+        <button class="brand-filter-btn px-4 py-2 bg-surface-container-low border border-surface-container-highest text-on-surface-variant hover:border-secondary-container text-label-sm font-label-sm uppercase tracking-wider transition-all" data-brand="Honda" onclick="ApexApp.filterByBrand('Honda')">HONDA</button>
+        <button class="brand-filter-btn px-4 py-2 bg-surface-container-low border border-surface-container-highest text-on-surface-variant hover:border-secondary-container text-label-sm font-label-sm uppercase tracking-wider transition-all" data-brand="Energica" onclick="ApexApp.filterByBrand('Energica')">ENERGICA</button>
+        <button class="brand-filter-btn px-4 py-2 bg-surface-container-low border border-surface-container-highest text-on-surface-variant hover:border-secondary-container text-label-sm font-label-sm uppercase tracking-wider transition-all" data-brand="Royal Enfield" onclick="ApexApp.filterByBrand('Royal Enfield')">ROYAL ENFIELD</button>
+      </div>
+
+      <!-- Bike Cards Grid (Dynamic JS Rendering) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="bikeCardsGrid">
+        <!-- Injected via ApexApp.renderBikes() -->
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 5. VISUAL BIKE CATEGORIES EXPLORER (Architectural Bento)                  -->
+    <!-- ========================================================================= -->
+    <section class="py-20 bg-surface-container-lowest border-y border-surface-container-highest" id="categories">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="mb-12">
+          <span class="text-label-md font-label-md text-secondary-container uppercase tracking-widest block mb-2">DYNAMIC ARCHETYPES</span>
+          <h2 class="text-headline-lg font-headline-lg text-on-surface uppercase text-3xl font-bold">EXPLORE RIDER DISCIPLINES</h2>
+          <p class="text-body-md font-body-md text-outline max-w-xl mt-1">
+            Engineered classifications fine-tuned for track attack, trans-continental rallies, and aggressive metropolitan velocity. Click any discipline to filter the showroom.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <!-- 1. Super Bikes (Featured Bento Large) -->
+          <div class="lg:col-span-2 group relative bg-surface-container-low border border-surface-container-highest hover:border-secondary-container p-6 overflow-hidden min-h-[280px] flex flex-col justify-end transition-all cursor-pointer" onclick="ApexApp.filterByCategory('superbike')">
+            <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/60 to-transparent z-10"></div>
+            <img class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNLXkyQK912cbYW9DTtkI8G24WBKC23UXXwTgltuig454fX0qCfsphOIMP_PgQPHzmSq6k32eUfzvYsxALACQkwXTBuk6IVEsV_YtYghj64zkVbOP8NjbElBhlrDD_w1NNFEWUPuetvZ7bZQhgmPRkCwVC2iAxGAmrXfhiW8ChGQVxjVqU4IXblWPWETJ--UmT2J9HBKsCwTHcbxkjvC73c3qTv69XU-Fo-wFc_1w" alt="Superbike Racing"/>
+            <div class="relative z-20 space-y-2">
+              <span class="px-2 py-0.5 bg-secondary-container text-white text-[10px] font-label-sm uppercase">1000cc+ RACE HOMOLOGATION</span>
+              <h3 class="text-headline-md font-headline-md text-white uppercase text-2xl font-bold">Super Bikes</h3>
+              <p class="text-body-sm font-body-sm text-outline max-w-md">Precision aerodynamics, 200+ HP engines, WorldSBK derived carbon winglets and titanium internals.</p>
+            </div>
+          </div>
+
+          <!-- 2. Hyper-Naked Bikes -->
+          <div class="group relative bg-surface-container-low border border-surface-container-highest hover:border-secondary-container p-6 overflow-hidden min-h-[280px] flex flex-col justify-end transition-all cursor-pointer" onclick="ApexApp.filterByCategory('hyper-naked')">
+            <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/60 to-transparent z-10"></div>
+            <img class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQ54RfahZuw2l5L6p0yoXuIFcS81rjTYvS-jPx8lHja5eiOb6XcHDNtEr8Ei8oTUGAlVt-CZRtMjZ-ptmEayMs9nLcfqFUqOrJNdjNOCaZSj1tmTm2t9O23kKO7l7nXhbu10EOHp-4rnSH4SrgFYDm6BeH5aNQk5Z9240kkQgIF75TnUtU13PBx5fk2rj-QwG9o9hJULKJY42feVCakIcnqqOpDQNRAYNBMByFggc" alt="Hyper-Naked"/>
+            <div class="relative z-20 space-y-1">
+              <span class="px-2 py-0.5 bg-surface-container text-primary-fixed text-[10px] font-label-sm uppercase">STREET WEAPONS</span>
+              <h3 class="text-headline-sm font-headline-sm text-white uppercase text-xl font-bold">Hyper-Naked</h3>
+              <p class="text-body-sm font-body-sm text-outline">Stripped chassis with ferocious upright torque.</p>
+            </div>
+          </div>
+
+          <!-- 3. Adventure / Dual-Sport -->
+          <div class="group relative bg-surface-container-low border border-surface-container-highest hover:border-secondary-container p-6 overflow-hidden min-h-[280px] flex flex-col justify-end transition-all cursor-pointer" onclick="ApexApp.filterByCategory('adventure')">
+            <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/60 to-transparent z-10"></div>
+            <img class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuUeSt47RMRLmF9VDCFYM4ztmomgUMW_QTCN39KxmZp-nzFHKCmJIilXho6FaUDqqj3LpkNTnfwDHyQ-BINZMq2I6FuPpRXsWn90lD1DbAIOtkh85YvBH1Q9hmlBt-7mnJrrzOsIZi5B-XemU9u-W2d6rR5ZaYIS-R3GRRy1RxyKDFE8nmZpuJmFq5dDDYgkFb2KQn3aOfaPfkuuIXzpbYRG1tWtuUyCx96d7FLxc" alt="Adventure Rally"/>
+            <div class="relative z-20 space-y-1">
+              <span class="px-2 py-0.5 bg-surface-container text-primary-fixed text-[10px] font-label-sm uppercase">DAKAR CAPABLE</span>
+              <h3 class="text-headline-sm font-headline-sm text-white uppercase text-xl font-bold">Adventure</h3>
+              <p class="text-body-sm font-body-sm text-outline">Long-travel electronic dampers and limitless range.</p>
+            </div>
+          </div>
+
+          <!-- 4. Cruiser & Muscle -->
+          <div class="group relative bg-surface-container-low border border-surface-container-highest hover:border-secondary-container p-6 overflow-hidden min-h-[240px] flex flex-col justify-end transition-all cursor-pointer" onclick="ApexApp.filterByCategory('cruiser')">
+            <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/60 to-transparent z-10"></div>
+            <img class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGhzqlqVWi5P1cAv2Z3-Tu7mEksH12wkYIAL0ycCZBLChMS0UTJLr7j8da8S1JubUxnxh3vaOuq95-l77IWsZwugUJrFyMXrbjWWP03SjIlvjeVQP8ZRUcp6WJrZUnNKl5J7NFr7yOIuzzreirmb9FfAQ59aNo_I-LdEt5OMGrTKJiiauuVVc98wyPaByRc5DZoCH6Hep7qab5n9ypzyzmEDyqNrZ2ebWfB4eqH0k" alt="Cruiser Heavy"/>
+            <div class="relative z-20 space-y-1">
+              <h3 class="text-headline-sm font-headline-sm text-white uppercase text-xl font-bold">Cruiser Heavy</h3>
+              <p class="text-body-sm font-body-sm text-outline">High displacement low-RPM torque for endless tarmac.</p>
+            </div>
+          </div>
+
+          <!-- 5. Electric Hyper-Bikes -->
+          <div class="group relative bg-surface-container-low border border-surface-container-highest hover:border-secondary-container p-6 overflow-hidden min-h-[240px] flex flex-col justify-end transition-all cursor-pointer" onclick="ApexApp.filterByCategory('electric')">
+            <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/60 to-transparent z-10"></div>
+            <img class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJj1ARfJVyZvXwq4RSrpVFMevh4NHwwYM11A3mAH4kItojmoJiVv_8uc3odFnNEJUKJWWdY10v0Xl2j6PgShgwwCmzdEaUhu6mcjZnCys1OfNEJvhpmAxUqDx08Ca0PkaNvdOb0_nnwDcNpf2Xayi2eVMlvOy1ZBrejMH3OrY3USZjUgjAYqZol4pN2pTG9stivUVCXAxuTRmBSXQ71edxmOQmtWU0jTkTMnPW7s0" alt="Electric Hyper"/>
+            <div class="relative z-20 space-y-1">
+              <span class="px-2 py-0.5 bg-secondary-container text-white text-[10px] font-label-sm uppercase">INSTANT 222NM</span>
+              <h3 class="text-headline-sm font-headline-sm text-white uppercase text-xl font-bold">Electric Hyper</h3>
+              <p class="text-body-sm font-body-sm text-outline">Zero-lag lightning torque &amp; MotoE heritage.</p>
+            </div>
+          </div>
+
+          <!-- 6. Cafe Racer & Heritage -->
+          <div class="group relative bg-surface-container-low border border-surface-container-highest hover:border-secondary-container p-6 overflow-hidden min-h-[240px] flex flex-col justify-end transition-all cursor-pointer" onclick="ApexApp.filterByCategory('cafe-classic')">
+            <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/60 to-transparent z-10"></div>
+            <img class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCW5tK70kcquOxx59X4Q-BnPWEGubQejsjMwfRAKVEo8Q9TyA1yE8BPVuiZToGsSv-3zCQgcNSgv1cVTZjEpOzOfF2LeTLkxtL8qaRxK9soV5Y6QXgBNs5hKhZLGflTFNd1rrvpd3tj9shc0rN66-uUt2g1m89rXeY8AD8bNAGKX8zAowAxBPCqT-DGVemiBSpOOlGFqQiGQjXWMXnABhwocVSl7CtC4FktgfbUW_w" alt="Cafe Classic"/>
+            <div class="relative z-20 space-y-1">
+              <h3 class="text-headline-sm font-headline-sm text-white uppercase text-xl font-bold">Cafe &amp; Classic</h3>
+              <p class="text-body-sm font-body-sm text-outline">Timeless analog aesthetics fused with modern chassis.</p>
+            </div>
+          </div>
+
+          <!-- 7. View All CTA Card -->
+          <div class="group relative bg-surface-container border border-surface-container-highest hover:border-secondary-container p-6 flex flex-col justify-between transition-all cursor-pointer" onclick="ApexApp.resetFilters()">
+            <span class="material-symbols-outlined text-3xl text-secondary-container">tune</span>
+            <div>
+              <h3 class="text-headline-sm font-headline-sm text-white uppercase text-xl font-bold">All Disciplines</h3>
+              <p class="text-body-sm font-body-sm text-outline mt-1">Browse entire certified showroom directory.</p>
+            </div>
+            <span class="text-label-sm font-label-sm text-secondary-container uppercase flex items-center gap-1 font-bold">
+              VIEW FLEET <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 6. INTERACTIVE BIKE COMPARISON MATRIX                                     -->
+    <!-- ========================================================================= -->
+    <section class="py-20 px-6 lg:px-12 max-w-7xl mx-auto" id="matrix">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+        <div>
+          <div class="flex items-center gap-2 text-secondary-container text-label-md font-label-md uppercase mb-2">
+            <span class="material-symbols-outlined text-sm">compare_arrows</span>
+            <span>TELEMETRY HEAD-TO-HEAD MATRIX</span>
+          </div>
+          <h2 class="text-headline-lg font-headline-lg text-on-surface uppercase text-3xl font-bold">TITAN SHOOTOUT</h2>
+          <p class="text-body-md font-body-md text-outline mt-1 max-w-xl">
+            Real-time dyno telemetry, power-to-weight deltas, and electronic package breakdowns compared side-by-side.
+          </p>
+        </div>
+
+        <!-- Quick Switcher Selector -->
+        <div class="flex items-center gap-3">
+          <label class="text-label-sm font-label-sm text-outline uppercase">COMPARE PRESET:</label>
+          <select class="bg-surface-container border border-surface-container-highest text-on-surface text-label-sm font-label-sm px-3 py-2 uppercase focus:border-secondary-container outline-none" id="presetCompareSelect">
+            <option value="panigale_vs_m1000rr">DUCATI V4R vs BMW M 1000 RR</option>
+            <option value="h2_vs_r1m">KAWASAKI H2 vs YAMAHA R1M</option>
+            <option value="duke_vs_fireblade">KTM SUPER DUKE vs HONDA FIREBLADE</option>
+            <option value="rsv4_vs_panigale">APRILIA RSV4 vs DUCATI PANIGALE</option>
+            <option value="rocket_vs_energica">TRIUMPH ROCKET 3 vs ENERGICA EGO</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Selectors for Custom Head-to-Head -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <div class="bg-surface-container p-3 border border-surface-container-highest flex items-center justify-between">
+          <span class="text-label-sm text-outline uppercase">SLOT 01 (PRIMARY):</span>
+          <select class="bg-surface-container-low border border-surface-container-highest text-on-surface text-label-sm px-3 py-1.5 uppercase outline-none focus:border-secondary-container" id="matrixBike1Select" onchange="ApexApp.selectMatrixBike(0, this.value)">
+            <!-- Options injected by JS -->
+          </select>
+        </div>
+        <div class="bg-surface-container p-3 border border-surface-container-highest flex items-center justify-between">
+          <span class="text-label-sm text-outline uppercase">SLOT 02 (CHALLENGER):</span>
+          <select class="bg-surface-container-low border border-surface-container-highest text-on-surface text-label-sm px-3 py-1.5 uppercase outline-none focus:border-secondary-container" id="matrixBike2Select" onchange="ApexApp.selectMatrixBike(1, this.value)">
+            <!-- Options injected by JS -->
+          </select>
+        </div>
+      </div>
+
+      <!-- Matrix Container -->
+      <div class="bg-surface-container-low border border-surface-container-highest overflow-x-auto">
+        <table class="w-full text-left border-collapse min-w-[700px]">
+          <thead>
+            <tr class="border-b border-surface-container-highest bg-surface-container">
+              <th class="p-4 lg:p-6 text-label-md font-label-md text-outline uppercase w-1/3">METRIC PARAMETER</th>
+              <th class="p-4 lg:p-6 text-headline-sm font-headline-sm text-primary uppercase w-1/3 border-l border-surface-container-highest" id="matrixBike1Name">
+                DUCATI PANIGALE V4R
+              </th>
+              <th class="p-4 lg:p-6 text-headline-sm font-headline-sm text-tertiary-fixed uppercase w-1/3 border-l border-surface-container-highest" id="matrixBike2Name">
+                BMW M 1000 RR
+              </th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-surface-container-highest text-body-md font-body-md">
+            <!-- Row: MSRP Price -->
+            <tr class="hover:bg-surface-container transition-colors">
+              <td class="p-4 lg:p-6 text-outline font-label-md text-label-sm uppercase">Price &amp; MSRP</td>
+              <td class="p-4 lg:p-6 font-metric-display text-lg text-on-surface border-l border-surface-container-highest font-bold" id="mPrice1">
+                $44,995 <span class="text-xs text-outline font-normal">USD</span>
+              </td>
+              <td class="p-4 lg:p-6 font-metric-display text-lg text-on-surface border-l border-surface-container-highest font-bold" id="mPrice2">
+                $37,990 <span class="text-xs text-outline font-normal">USD</span>
+              </td>
+            </tr>
+
+            <!-- Row: Displacement -->
+            <tr class="hover:bg-surface-container transition-colors">
+              <td class="p-4 lg:p-6 text-outline font-label-md text-label-sm uppercase">Engine Architecture</td>
+              <td class="p-4 lg:p-6 border-l border-surface-container-highest font-label-md text-sm text-on-surface" id="mEngine1">
+                998cc Desmosedici Stradale V4 90°
+              </td>
+              <td class="p-4 lg:p-6 border-l border-surface-container-highest font-label-md text-sm text-on-surface" id="mEngine2">
+                999cc ShiftCam 4-Cylinder
+              </td>
+            </tr>
+
+            <!-- Row: Max Power with Delta Bar -->
+            <tr class="hover:bg-surface-container transition-colors">
+              <td class="p-4 lg:p-6 text-outline font-label-md text-label-sm uppercase">
+                Peak Output (HP)
+                <span class="block text-[10px] text-secondary-container">BENCHMARK HP DELTA</span>
+              </td>
+              <td class="p-4 lg:p-6 border-l border-surface-container-highest" id="mPower1">
+                <!-- Injected via updateMatrixView() -->
+              </td>
+              <td class="p-4 lg:p-6 border-l border-surface-container-highest" id="mPower2">
+                <!-- Injected via updateMatrixView() -->
+              </td>
+            </tr>
+
+            <!-- Row: Torque -->
+            <tr class="hover:bg-surface-container transition-colors">
+              <td class="p-4 lg:p-6 text-outline font-label-md text-label-sm uppercase">Max Torque (Nm)</td>
+              <td class="p-4 lg:p-6 border-l border-surface-container-highest font-metric-display text-lg text-on-surface" id="mTorque1">
+                111.3 Nm @ 12,000 RPM
+              </td>
+              <td class="p-4 lg:p-6 border-l border-surface-container-highest font-metric-display text-lg text-on-surface" id="mTorque2">
+                113.0 Nm @ 11,000 RPM
+              </td>
+            </tr>
+
+            <!-- Row: Weight Delta -->
+            <tr class="hover:bg-surface-container transition-colors">
+              <td class="p-4 lg:p-6 text-outline font-label-md text-label-sm uppercase">Dry Weight (Kg)</td>
+              <td class="p-4 lg:p-6 border-l border-surface-container-highest font-metric-display text-lg text-on-surface" id="mWeight1">
+                167 KG (Dry)
+              </td>
+              <td class="p-4 lg:p-6 border-l border-surface-container-highest font-metric-display text-lg text-on-surface" id="mWeight2">
+                170 KG (Dry)
+              </td>
+            </tr>
+
+            <!-- Row: Power to Weight -->
+            <tr class="hover:bg-surface-container transition-colors">
+              <td class="p-4 lg:p-6 text-outline font-label-md text-label-sm uppercase">Power-to-Weight Ratio</td>
+              <td class="p-4 lg:p-6 border-l border-surface-container-highest font-metric-display text-lg text-secondary-container font-bold" id="mPtw1">
+                1.30 hp/kg
+              </td>
+              <td class="p-4 lg:p-6 border-l border-surface-container-highest font-metric-display text-lg text-tertiary-fixed font-bold" id="mPtw2">
+                1.25 hp/kg
+              </td>
+            </tr>
+
+            <!-- Row: Acceleration -->
+            <tr class="hover:bg-surface-container transition-colors">
+              <td class="p-4 lg:p-6 text-outline font-label-md text-label-sm uppercase">0-100 KM/H Launch Sprint</td>
+              <td class="p-4 lg:p-6 border-l border-surface-container-highest font-metric-display text-lg text-on-surface font-bold" id="mAccel1">
+                2.71s
+              </td>
+              <td class="p-4 lg:p-6 border-l border-surface-container-highest font-metric-display text-lg text-on-surface font-bold" id="mAccel2">
+                2.80s
+              </td>
+            </tr>
+
+            <!-- Row: Verified Top Speed -->
+            <tr class="hover:bg-surface-container transition-colors">
+              <td class="p-4 lg:p-6 text-outline font-label-md text-label-sm uppercase">GPS Telemetry Top Speed</td>
+              <td class="p-4 lg:p-6 border-l border-surface-container-highest font-metric-display text-lg text-on-surface" id="mSpeed1">
+                318 KM/H
+              </td>
+              <td class="p-4 lg:p-6 border-l border-surface-container-highest font-metric-display text-lg text-on-surface" id="mSpeed2">
+                314 KM/H
+              </td>
+            </tr>
+
+            <!-- Row: Electronics & Suspension -->
+            <tr class="hover:bg-surface-container transition-colors">
+              <td class="p-4 lg:p-6 text-outline font-label-md text-label-sm uppercase">Chassis &amp; Telematics Suite</td>
+              <td class="p-4 lg:p-6 border-l border-surface-container-highest text-body-sm text-outline" id="mTech1">
+                Öhlins NPX 25/30 pressurized forks, Cornering ABS EVO, Slide Control (DSC), Titanium connecting rods.
+              </td>
+              <td class="p-4 lg:p-6 border-l border-surface-container-highest text-body-sm text-outline" id="mTech2">
+                M 3.0 Carbon winglets downforce 22.6kg, M Carbon wheels, Shift Assistant Pro, Dynamic Traction Control EVO.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Action row underneath matrix -->
+      <div class="mt-6 flex flex-wrap items-center justify-between gap-4 p-4 bg-surface-container-low border border-surface-container-highest">
+        <div class="flex items-center gap-2 text-label-sm font-label-sm text-outline">
+          <span class="material-symbols-outlined text-secondary-container text-base">verified</span>
+          <span>DATA EXTRACTED FROM DUCATI CORSE &amp; BMW MOTORRAD 2025 HOMOLOGATION DATALOGGERS</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <button class="px-4 py-2 bg-surface-container border border-surface-container-highest text-on-surface text-label-sm font-label-sm uppercase hover:border-secondary-container transition-all flex items-center gap-2" onclick="window.print()">
+            <span class="material-symbols-outlined text-sm">print</span>
+            <span>PRINT TELEMETRY REPORT</span>
+          </button>
+          <button class="px-6 py-2 bg-secondary-container text-white text-label-sm font-label-sm uppercase redline-glow hover:bg-on-secondary transition-all" onclick="ApexApp.openTestRideModal()">
+            BOOK TRACK TEST
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 7. WHY CHOOSE APEX MOTORRAD (Engineering & Luxury Pillars)                -->
+    <!-- ========================================================================= -->
+    <section class="py-20 bg-surface-container-lowest border-y border-surface-container-highest" id="why-apex">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+          <span class="text-label-md font-label-md text-secondary-container uppercase tracking-widest block">THE APEX DIFFERENCE</span>
+          <h2 class="text-headline-lg font-headline-lg text-on-surface uppercase text-3xl font-bold">ENGINEERED INTEGRITY &amp; CONCIERGE ACCESS</h2>
+          <p class="text-body-md font-body-md text-outline">
+            Every allocation acquired through Apex Motorrad undergoes surgical dyno validation, laser frame inspection, and track-certified preparation.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <!-- Pillar 1 -->
+          <div class="p-6 bg-surface-container-low border border-surface-container-highest hover:border-secondary-container transition-all group">
+            <span class="material-symbols-outlined text-3xl text-secondary-container mb-4 block group-hover:scale-110 transition-transform">speed</span>
+            <span class="text-label-sm font-label-sm text-outline block mb-1">PILLAR 01</span>
+            <h3 class="text-title-lg font-title-lg text-on-surface font-bold mb-2">Verified Dyno Telemetry</h3>
+            <p class="text-body-sm font-body-sm text-outline">Every unit includes certified wheel horsepower and torque curves logged on our factory dynojet cells.</p>
+          </div>
+
+          <!-- Pillar 2 -->
+          <div class="p-6 bg-surface-container-low border border-surface-container-highest hover:border-secondary-container transition-all group">
+            <span class="material-symbols-outlined text-3xl text-secondary-container mb-4 block group-hover:scale-110 transition-transform">verified_user</span>
+            <span class="text-label-sm font-label-sm text-outline block mb-1">PILLAR 02</span>
+            <h3 class="text-title-lg font-title-lg text-on-surface font-bold mb-2">Direct Homologation</h3>
+            <p class="text-body-sm font-body-sm text-outline">Direct factory allocation numbers, full manufacturer warranty transfers, and race-registry titles.</p>
+          </div>
+
+          <!-- Pillar 3 -->
+          <div class="p-6 bg-surface-container-low border border-surface-container-highest hover:border-secondary-container transition-all group">
+            <span class="material-symbols-outlined text-3xl text-secondary-container mb-4 block group-hover:scale-110 transition-transform">compare</span>
+            <span class="text-label-sm font-label-sm text-outline block mb-1">PILLAR 03</span>
+            <h3 class="text-title-lg font-title-lg text-on-surface font-bold mb-2">Telemetry Comparison</h3>
+            <p class="text-body-sm font-body-sm text-outline">Compare real-world drag strip 60-130mph times, braking distances, and ergonomics angles before you buy.</p>
+          </div>
+
+          <!-- Pillar 4 -->
+          <div class="p-6 bg-surface-container-low border border-surface-container-highest hover:border-secondary-container transition-all group">
+            <span class="material-symbols-outlined text-3xl text-secondary-container mb-4 block group-hover:scale-110 transition-transform">local_shipping</span>
+            <span class="text-label-sm font-label-sm text-outline block mb-1">PILLAR 04</span>
+            <h3 class="text-title-lg font-title-lg text-on-surface font-bold mb-2">Track-Day Concierge</h3>
+            <p class="text-body-sm font-body-sm text-outline">Climate-controlled enclosed transport straight to premier circuits with dedicated tire warmers and fuel prep.</p>
+          </div>
+
+          <!-- Pillar 5 -->
+          <div class="p-6 bg-surface-container-low border border-surface-container-highest hover:border-secondary-container transition-all group">
+            <span class="material-symbols-outlined text-3xl text-secondary-container mb-4 block group-hover:scale-110 transition-transform">construction</span>
+            <span class="text-label-sm font-label-sm text-outline block mb-1">PILLAR 05</span>
+            <h3 class="text-title-lg font-title-lg text-on-surface font-bold mb-2">Master Tech Network</h3>
+            <p class="text-body-sm font-body-sm text-outline">FIM-certified telemetry technicians handling suspension valving, ECU flashes, and dry clutch rebuilds.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 8. VERIFIED OWNER & RACER REVIEWS                                         -->
+    <!-- ========================================================================= -->
+    <section class="py-20 px-6 lg:px-12 max-w-7xl mx-auto" id="reviews">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div>
+          <span class="text-label-md font-label-md text-secondary-container uppercase tracking-widest block mb-2">PILOT EXPERIENCES</span>
+          <h2 class="text-headline-lg font-headline-lg text-on-surface uppercase text-3xl font-bold">TRACK TESTIMONIALS</h2>
+          <p class="text-body-md font-body-md text-outline mt-1 max-w-xl">
+            Real lap times and visceral feedback from licensed racers, collectors, and high-performance track riders.
+          </p>
+        </div>
+        <div class="flex items-center gap-2 text-label-md font-label-md text-primary-fixed">
+          <span class="material-symbols-outlined text-secondary-container" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="font-bold">4.98 / 5.0</span>
+          <span class="text-outline text-label-sm font-label-sm">(340+ RACERS VERIFIED)</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Review 1 -->
+        <div class="p-6 bg-surface-container-low border border-surface-container-highest relative flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="flex text-secondary-container">
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+              </div>
+              <span class="text-[10px] font-label-sm text-outline uppercase">VERIFIED PURCHASE</span>
+            </div>
+            <p class="text-body-md font-body-md text-on-surface italic">
+              "The Panigale V4R delivered via Apex was tuned to track perfection on delivery day. The throttle connection out of turn 3 at Circuit of the Americas was razor clean. 218 HP has never felt so surgical."
+            </p>
+          </div>
+          <div class="pt-6 border-t border-surface-container-highest mt-6 flex items-center justify-between">
+            <div>
+              <span class="font-title-md text-title-md text-on-surface block font-bold">Marcus Vance</span>
+              <span class="text-label-sm font-label-sm text-outline">COTA TRACKDAYS // DUCATI V4R</span>
+            </div>
+            <span class="px-2 py-1 bg-surface-container text-label-sm font-label-sm text-secondary-container font-bold">2:09.4 LAP</span>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="p-6 bg-surface-container-low border border-surface-container-highest relative flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="flex text-secondary-container">
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+              </div>
+              <span class="text-[10px] font-label-sm text-outline uppercase">VERIFIED PURCHASE</span>
+            </div>
+            <p class="text-body-md font-body-md text-on-surface italic">
+              "The comparison suite saved me thousands. Being able to cross-reference the M 1000 RR ShiftCam telemetry against the R1M gave me total confidence in my track investment. Unbeatable concierge delivery."
+            </p>
+          </div>
+          <div class="pt-6 border-t border-surface-container-highest mt-6 flex items-center justify-between">
+            <div>
+              <span class="font-title-md text-title-md text-on-surface block font-bold">Elena Rostova</span>
+              <span class="text-label-sm font-label-sm text-outline">SILVERSTONE RACER // BMW M1000RR</span>
+            </div>
+            <span class="px-2 py-1 bg-surface-container text-label-sm font-label-sm text-secondary-container font-bold">2:04.1 LAP</span>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="p-6 bg-surface-container-low border border-surface-container-highest relative flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="flex text-secondary-container">
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+              </div>
+              <span class="text-[10px] font-label-sm text-outline uppercase">VERIFIED PURCHASE</span>
+            </div>
+            <p class="text-body-md font-body-md text-on-surface italic">
+              "The supercharged torque on the Ninja H2 Carbon will rearrange your understanding of physics. Apex had the ECU calibrated and verified on the dyno before it rolled into my garage. Absolute masterclass."
+            </p>
+          </div>
+          <div class="pt-6 border-t border-surface-container-highest mt-6 flex items-center justify-between">
+            <div>
+              <span class="font-title-md text-title-md text-on-surface block font-bold">Devon Sterling</span>
+              <span class="text-label-sm font-label-sm text-outline">SPEED RUNNER // KAWASAKI H2</span>
+            </div>
+            <span class="px-2 py-1 bg-surface-container text-label-sm font-label-sm text-secondary-container font-bold">332 KM/H GPS</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 9. HIGH-OCTANE NEWSLETTER SECTION ("STAY AHEAD OF THE RIDE")              -->
+    <!-- ========================================================================= -->
+    <section class="py-20 bg-surface-container-lowest border-t border-surface-container-highest relative overflow-hidden">
+      <div class="absolute inset-0 carbon-mesh opacity-10 pointer-events-none"></div>
+      <div class="max-w-4xl mx-auto px-6 lg:px-12 text-center relative z-10 space-y-6">
+        <span class="px-3 py-1 bg-surface-container border border-surface-container-highest text-secondary-container text-label-sm font-label-sm uppercase tracking-wider inline-block">
+          VIP PADDOCK ACCESS
+        </span>
+        <h2 class="text-headline-xl font-headline-xl text-on-surface uppercase tracking-tight text-3xl sm:text-5xl font-extrabold">
+          STAY AHEAD OF <br/>
+          <span class="text-secondary-container">THE RIDE</span>
+        </h2>
+        <p class="text-body-lg font-body-lg text-outline max-w-xl mx-auto">
+          Subscribe to receive invitation-only private track launches, dyno telemetry updates, and exclusive allocations before public homologation release.
+        </p>
+
+        <form class="max-w-md mx-auto flex flex-col sm:flex-row gap-2 pt-4" onsubmit="event.preventDefault(); ApexApp.showToast('TELEMETRY CONFIRMED: Welcome to the VIP Paddock.', 'success'); this.reset();">
+          <input class="flex-1 bg-surface-container-low border border-surface-container-highest px-4 py-3.5 text-on-surface placeholder:text-outline font-body-sm focus:border-secondary-container outline-none" placeholder="Enter rider telemetry email..." required="" type="email"/>
+          <button class="px-6 py-3.5 bg-secondary-container text-white font-label-md text-label-md uppercase tracking-wider redline-glow hover:bg-on-secondary transition-all active:scale-[0.98]" type="submit">
+            JOIN THE GRID
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- 10. COMPREHENSIVE LUXURY MOTORRAD FOOTER                                  -->
+  <!-- ========================================================================= -->
+  <footer class="border-t border-surface-container-highest bg-surface-container-lowest w-full px-6 lg:px-12 py-16">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-surface-container-highest">
+      <!-- Col 1: Brand Info -->
+      <div class="lg:col-span-2 space-y-4">
+        <a class="flex items-center gap-3" href="#hero">
+          <img alt="APEX MOTORRAD" class="h-8 w-auto object-contain" src="assets/images/logo.png" onerror="this.style.display='none'"/>
+          <span class="text-headline-sm font-headline-sm text-white tracking-wider">APEX <span class="text-secondary-container">MOTORRAD</span></span>
+        </a>
+        <p class="text-body-sm font-body-sm text-outline max-w-sm">
+          Apex Motorwerks is the international benchmark for homologated race bikes, dyno telemetry analysis, and bespoke performance delivery.
+        </p>
+        <div class="text-label-sm font-label-sm text-outline-variant space-y-1">
+          <p>GLOBAL HEADQUARTERS: MONACO // MODENA // STUTTGART</p>
+          <p>TRACKLINE 24/7: +1 (800) 555-APEX-CORSE</p>
+        </div>
+      </div>
+
+      <!-- Col 2: Showroom & Registry -->
+      <div class="space-y-3">
+        <h4 class="text-label-md font-label-md text-on-surface uppercase tracking-wider">SHOWROOM SUITE</h4>
+        <ul class="space-y-2 text-label-sm font-label-sm">
+          <li><a class="text-on-surface-variant hover:text-white transition-colors uppercase" href="#showroom">Homologation Registry</a></li>
+          <li><a class="text-on-surface-variant hover:text-white transition-colors uppercase" href="#dyno-lab">Dyno Tuning Centers</a></li>
+          <li><a class="text-on-surface-variant hover:text-white transition-colors uppercase" href="#matrix">Compare Matrix</a></li>
+          <li><a class="text-on-surface-variant hover:text-white transition-colors uppercase" href="#categories">Rider Disciplines</a></li>
+          <li><a class="text-secondary-container hover:text-white transition-colors uppercase font-bold cursor-pointer" onclick="ApexApp.openTestRideModal()">Book Circuit Session</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Engineering Whitepapers -->
+      <div class="space-y-3">
+        <h4 class="text-label-md font-label-md text-on-surface uppercase tracking-wider">TECHNICAL PAPERS</h4>
+        <ul class="space-y-2 text-label-sm font-label-sm">
+          <li><a class="text-on-surface-variant hover:text-white transition-colors uppercase" href="#dyno-lab">Dyno Telemetry Datalog</a></li>
+          <li><a class="text-on-surface-variant hover:text-white transition-colors uppercase" href="#hero">Aero Winglet CFD Analysis</a></li>
+          <li><a class="text-on-surface-variant hover:text-white transition-colors uppercase" href="#matrix">Power-to-Weight Deltas</a></li>
+          <li><a class="text-on-surface-variant hover:text-white transition-colors uppercase" href="#why-apex">Master Tech Standards</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Manufacturers -->
+      <div class="space-y-3">
+        <h4 class="text-label-md font-label-md text-on-surface uppercase tracking-wider">HOMOLOGATED BRANDS</h4>
+        <div class="grid grid-cols-2 gap-2 text-label-sm font-label-sm text-outline">
+          <span class="hover:text-primary cursor-pointer" onclick="ApexApp.filterByBrand('Ducati')">DUCATI</span>
+          <span class="hover:text-primary cursor-pointer" onclick="ApexApp.filterByBrand('BMW')">BMW M</span>
+          <span class="hover:text-primary cursor-pointer" onclick="ApexApp.filterByBrand('Kawasaki')">KAWASAKI</span>
+          <span class="hover:text-primary cursor-pointer" onclick="ApexApp.filterByBrand('Yamaha')">YAMAHA</span>
+          <span class="hover:text-primary cursor-pointer" onclick="ApexApp.filterByBrand('KTM')">KTM RACING</span>
+          <span class="hover:text-primary cursor-pointer" onclick="ApexApp.filterByBrand('Aprilia')">APRILIA</span>
+          <span class="hover:text-primary cursor-pointer" onclick="ApexApp.filterByBrand('Triumph')">TRIUMPH</span>
+          <span class="hover:text-primary cursor-pointer" onclick="ApexApp.filterByBrand('Energica')">ENERGICA</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Copyright -->
+    <div class="max-w-7xl mx-auto pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-label-sm font-label-sm text-outline">
+      <p>© 2025 APEX MOTORWERKS RACING &amp; LUXURY MOTORS INC. ALL RIGHTS RESERVED. TRACK USE AND CERTIFIED HOMOLOGATION.</p>
+      <div class="flex items-center gap-6">
+        <span class="hover:text-white cursor-pointer" onclick="ApexApp.showToast('Apex Telemetry Privacy: 256-bit encryption for pilot datalogs.', 'info')">PRIVACY TELEMETRY</span>
+        <span class="hover:text-white cursor-pointer" onclick="ApexApp.showToast('FIM Homologation: Certified for competition use.', 'info')">FIM PROTOCOL</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL 1: INTERACTIVE BIKE DETAILS & SPEC INSPECTION DRAWER               -->
+  <!-- ========================================================================= -->
+  <div class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md overflow-y-auto" id="bikeDetailsModal">
+    <div class="min-h-screen px-4 flex items-center justify-center py-12">
+      <div class="bg-surface-container-low border border-surface-container-highest max-w-4xl w-full p-6 lg:p-8 space-y-6 relative shadow-2xl">
+        <!-- Close button -->
+        <button class="absolute top-4 right-4 text-outline hover:text-white p-2" onclick="ApexApp.closeBikeModal()">
+          <span class="material-symbols-outlined text-2xl">close</span>
+        </button>
+
+        <!-- Dynamic Header -->
+        <div class="border-b border-surface-container-highest pb-4 pr-10">
+          <div class="flex items-center gap-3 mb-1">
+            <span class="text-label-sm font-label-sm text-secondary-container uppercase" id="modalBikeBrand">BRAND</span>
+            <span class="text-outline">/</span>
+            <span class="text-label-sm font-label-sm text-outline uppercase" id="modalChassisTag">CHASSIS CERTIFIED</span>
+          </div>
+          <h2 class="text-headline-lg font-headline-lg text-on-surface uppercase text-2xl sm:text-3xl font-bold" id="modalBikeTitle">BIKE MODEL</h2>
+        </div>
+
+        <!-- Visual Stage & Spec Breakdowns -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+          <div class="space-y-4">
+            <div class="aspect-[16/10] bg-surface-container-lowest border border-surface-container-highest overflow-hidden relative">
+              <img class="w-full h-full object-cover" id="modalBikeImg" src="" alt="Machine View"/>
+              <span class="absolute bottom-2 right-2 px-3 py-1 bg-surface-container-lowest/90 font-metric-display text-primary-fixed text-lg font-bold" id="modalPriceTag">$00,000</span>
+            </div>
+
+            <!-- Factory Colors -->
+            <div class="p-3 bg-surface-container border border-surface-container-highest">
+              <span class="text-label-sm font-label-sm text-outline block mb-2 uppercase">FACTORY COLORWAYS</span>
+              <div class="flex flex-wrap items-center gap-3" id="modalColorways">
+                <!-- Injected via ApexApp.openBikeModal() -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Deep Specs Column -->
+          <div class="space-y-4">
+            <div class="bg-surface-container p-4 border border-surface-container-highest space-y-2">
+              <h4 class="text-label-md font-label-md text-primary uppercase">ENGINE &amp; TRANSMISSION TELEMETRY</h4>
+              <div class="grid grid-cols-2 gap-2 text-label-sm font-label-sm">
+                <div>
+                  <span class="text-outline block">Displacement</span>
+                  <span class="text-on-surface font-bold" id="modalEngineCC">--</span>
+                </div>
+                <div>
+                  <span class="text-outline block">Bore x Stroke</span>
+                  <span class="text-on-surface font-bold" id="modalBoreStroke">--</span>
+                </div>
+                <div>
+                  <span class="text-outline block">Compression Ratio</span>
+                  <span class="text-on-surface font-bold" id="modalCompression">--</span>
+                </div>
+                <div>
+                  <span class="text-outline block">Gearbox / Quickshift</span>
+                  <span class="text-on-surface font-bold" id="modalGearbox">--</span>
+                </div>
+                <div>
+                  <span class="text-outline block">Fuel Capacity</span>
+                  <span class="text-on-surface font-bold" id="modalTank">--</span>
+                </div>
+                <div>
+                  <span class="text-outline block">Seat Height</span>
+                  <span class="text-on-surface font-bold" id="modalSeatHeight">--</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-surface-container p-4 border border-surface-container-highest space-y-2">
+              <h4 class="text-label-md font-label-md text-tertiary-fixed uppercase">ELECTRONICS &amp; SUSPENSION SUITE</h4>
+              <p class="text-body-sm font-body-sm text-outline" id="modalTechDesc">--</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2 pt-2">
+              <button class="py-3 bg-secondary-container text-white font-label-md text-label-md uppercase tracking-wider redline-glow hover:bg-on-secondary transition-all" onclick="ApexApp.openTestRideModal()">
+                BOOK TEST RIDE
+              </button>
+              <button class="py-3 bg-surface-container hover:bg-surface-container-high border border-surface-container-highest text-on-surface font-label-md text-label-md uppercase transition-all" onclick="ApexApp.openFinanceModal()">
+                FINANCE ESTIMATE
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL 2: FINANCING & LEASE CALCULATOR                                     -->
+  <!-- ========================================================================= -->
+  <div class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md overflow-y-auto" id="financeModal">
+    <div class="min-h-screen px-4 flex items-center justify-center py-12">
+      <div class="bg-surface-container-low border border-surface-container-highest max-w-lg w-full p-6 lg:p-8 space-y-6 relative shadow-2xl">
+        <button class="absolute top-4 right-4 text-outline hover:text-white p-2" onclick="ApexApp.closeFinanceModal()">
+          <span class="material-symbols-outlined text-2xl">close</span>
+        </button>
+
+        <div class="border-b border-surface-container-highest pb-4">
+          <span class="text-label-sm font-label-sm text-secondary-container uppercase">APEX CAPITAL LEASE &amp; FINANCING</span>
+          <h3 class="text-headline-md font-headline-md text-on-surface uppercase mt-1 text-2xl font-bold">ESTIMATE MONTHLY ALLOCATION</h3>
+          <p class="text-body-sm font-body-sm text-outline">Customized lease structures with track warranty extensions.</p>
+        </div>
+
+        <form class="space-y-4" onsubmit="event.preventDefault(); ApexApp.showToast('PRE-APPROVAL SUBMITTED: An Apex Capital agent will contact you.', 'success'); ApexApp.closeFinanceModal();">
+          <div>
+            <label class="block text-label-sm font-label-sm text-outline uppercase mb-1">SELECT MACHINE</label>
+            <select class="w-full bg-surface-container border border-surface-container-highest text-on-surface font-body-sm px-3 py-2 outline-none" id="financeBikeSelect" onchange="ApexApp.calculateFinance()">
+              <!-- Injected by JS -->
+            </select>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-label-sm font-label-sm text-outline uppercase mb-1">DOWN PAYMENT ($)</label>
+              <input class="w-full bg-surface-container border border-surface-container-highest text-on-surface font-body-sm px-3 py-2 outline-none" id="financeDown" type="number" value="6500" step="500" oninput="ApexApp.calculateFinance()"/>
+            </div>
+            <div>
+              <label class="block text-label-sm font-label-sm text-outline uppercase mb-1">LOAN TERM</label>
+              <select class="w-full bg-surface-container border border-surface-container-highest text-on-surface font-body-sm px-3 py-2 outline-none" id="financeTerm" onchange="ApexApp.calculateFinance()">
+                <option value="24">24 Months</option>
+                <option value="36" selected>36 Months</option>
+                <option value="48">48 Months</option>
+                <option value="60">60 Months</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <label class="text-label-sm font-label-sm text-outline uppercase">APR INTEREST RATE: <span id="aprValDisplay" class="text-white font-bold">4.9%</span></label>
+            </div>
+            <input class="w-full accent-secondary-container cursor-pointer" id="financeApr" type="range" min="2.9" max="9.9" step="0.1" value="4.9" oninput="document.getElementById('aprValDisplay').innerText = this.value + '%'; ApexApp.calculateFinance();"/>
+          </div>
+
+          <div class="flex items-center gap-3 p-3 bg-surface-container border border-surface-container-highest">
+            <input type="checkbox" id="financeWarranty" class="accent-secondary-container w-4 h-4" onchange="ApexApp.calculateFinance()"/>
+            <label for="financeWarranty" class="text-label-sm font-label-sm text-on-surface cursor-pointer">
+              Add Apex Track Concierge &amp; Engine Warranty Shield (+$89/mo)
+            </label>
+          </div>
+
+          <input type="hidden" id="financePrice" value="44995"/>
+
+          <!-- Calculation Readout Panel -->
+          <div class="p-4 bg-surface-container border border-secondary-container/50 space-y-2">
+            <div class="flex justify-between items-baseline">
+              <span class="text-label-sm text-outline uppercase">ESTIMATED PAYMENT:</span>
+              <span class="text-headline-md font-metric-display text-secondary-container text-2xl font-bold" id="financeMonthlyPayment">$0</span>
+            </div>
+            <div class="flex justify-between text-label-sm text-outline">
+              <span>Total Finance Charges:</span>
+              <span id="financeTotalInterest">$0</span>
+            </div>
+            <div class="flex justify-between text-label-sm text-outline">
+              <span>Total Capital Outlay:</span>
+              <span id="financeTotalOutlay">$0</span>
+            </div>
+          </div>
+
+          <button class="w-full py-3 bg-secondary-container text-white font-label-md text-label-md uppercase tracking-wider redline-glow hover:bg-on-secondary transition-all" type="submit">
+            SUBMIT PRE-APPROVAL APPLICATION
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL 3: BOOK TEST RIDE DIALOG                                            -->
+  <!-- ========================================================================= -->
+  <div class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md overflow-y-auto" id="testRideModal">
+    <div class="min-h-screen px-4 flex items-center justify-center py-12">
+      <div class="bg-surface-container-low border border-surface-container-highest max-w-lg w-full p-6 lg:p-8 space-y-6 relative shadow-2xl">
+        <button class="absolute top-4 right-4 text-outline hover:text-white p-2" onclick="ApexApp.closeTestRideModal()">
+          <span class="material-symbols-outlined text-2xl">close</span>
+        </button>
+
+        <div class="border-b border-surface-container-highest pb-4">
+          <span class="text-label-sm font-label-sm text-secondary-container uppercase">HOMOLOGATION TRACK EXPERIENCE</span>
+          <h3 class="text-headline-md font-headline-md text-on-surface uppercase mt-1 text-2xl font-bold">RESERVE CIRCUIT SESSION</h3>
+          <p class="text-body-sm font-body-sm text-outline">Select your machine and certified circuit or dyno proving facility.</p>
+        </div>
+
+        <form class="space-y-4" onsubmit="ApexApp.handleTestRideSubmit(event)">
+          <div>
+            <label class="block text-label-sm font-label-sm text-outline uppercase mb-1">SELECT MACHINE</label>
+            <select class="w-full bg-surface-container border border-surface-container-highest text-on-surface font-body-sm px-3 py-2 outline-none focus:border-secondary-container" id="testRideMachineSelect">
+              <!-- Injected via JS -->
+            </select>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-label-sm font-label-sm text-outline uppercase mb-1">PILOT FULL NAME</label>
+              <input class="w-full bg-surface-container border border-surface-container-highest text-on-surface font-body-sm px-3 py-2 outline-none focus:border-secondary-container" id="testRideRiderName" placeholder="Alex Mercer" required="" type="text"/>
+            </div>
+            <div>
+              <label class="block text-label-sm font-label-sm text-outline uppercase mb-1">CONTACT PHONE</label>
+              <input class="w-full bg-surface-container border border-surface-container-highest text-on-surface font-body-sm px-3 py-2 outline-none focus:border-secondary-container" id="testRideRiderPhone" placeholder="+1 (555) 019-2834" required="" type="tel"/>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-label-sm font-label-sm text-outline uppercase mb-1">PROVING CIRCUIT</label>
+              <select class="w-full bg-surface-container border border-surface-container-highest text-on-surface font-body-sm px-3 py-2 outline-none focus:border-secondary-container" id="testRideVenueSelect">
+                <option value="Circuit of The Americas (Austin, TX)">Circuit of The Americas (Austin, TX)</option>
+                <option value="Laguna Seca Raceway (Monterey, CA)">Laguna Seca Raceway (Monterey, CA)</option>
+                <option value="Silverstone Circuit (UK)">Silverstone Circuit (UK)</option>
+                <option value="Autodromo Nazionale Monza (Italy)">Autodromo Nazionale Monza (Italy)</option>
+                <option value="Nürburgring Nordschleife (Germany)">Nürburgring Nordschleife (Germany)</option>
+                <option value="Apex Private Dyno Facility (Atlanta, GA)">Apex Private Dyno Facility (Atlanta, GA)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-label-sm font-label-sm text-outline uppercase mb-1">SESSION DATE</label>
+              <input class="w-full bg-surface-container border border-surface-container-highest text-on-surface font-body-sm px-3 py-2 outline-none focus:border-secondary-container" id="testRideDate" type="date" required=""/>
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <button class="w-full py-3 bg-secondary-container text-white font-label-md text-label-md uppercase tracking-wider redline-glow hover:bg-on-secondary transition-all" type="submit">
+              CONFIRM &amp; ISSUE TRACK PASS
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL 4: DIGITAL HOMOLOGATION CIRCUIT PASS                                -->
+  <!-- ========================================================================= -->
+  <div class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-md overflow-y-auto" id="digitalPassModal">
+    <div class="min-h-screen px-4 flex items-center justify-center py-12">
+      <div class="bg-surface-container-lowest border-2 border-secondary-container max-w-md w-full p-6 space-y-6 relative shadow-[0_0_50px_rgba(220,0,28,0.3)]">
+        <button class="absolute top-4 right-4 text-outline hover:text-white p-2" onclick="ApexApp.closeDigitalPassModal()">
+          <span class="material-symbols-outlined text-2xl">close</span>
+        </button>
+
+        <div class="text-center border-b border-surface-container-highest pb-4">
+          <span class="px-2 py-0.5 bg-secondary-container text-white text-[10px] font-label-sm uppercase tracking-widest inline-block mb-2">
+            OFFICIAL DIGITAL CIRCUIT VOUCHER
+          </span>
+          <h3 class="text-headline-md font-headline-md text-white uppercase text-2xl font-bold tracking-tight">HOMOLOGATION PASS</h3>
+          <span class="font-metric-display text-primary text-xl font-bold tracking-wider block mt-1" id="passCodeDisplay">APEX-TX-9904</span>
+        </div>
+
+        <div class="space-y-3 font-label-sm text-label-sm">
+          <div class="flex justify-between py-1 border-b border-surface-container-highest">
+            <span class="text-outline uppercase">PILOT NAME:</span>
+            <span class="text-white font-bold" id="passPilotName">ALEX MERCER</span>
+          </div>
+          <div class="flex justify-between py-1 border-b border-surface-container-highest">
+            <span class="text-outline uppercase">MACHINE:</span>
+            <span class="text-white font-bold" id="passMachineName">DUCATI PANIGALE V4R</span>
+          </div>
+          <div class="flex justify-between py-1 border-b border-surface-container-highest">
+            <span class="text-outline uppercase">PROVING CIRCUIT:</span>
+            <span class="text-secondary-container font-bold" id="passVenue">COTA AUSTIN</span>
+          </div>
+          <div class="flex justify-between py-1 border-b border-surface-container-highest">
+            <span class="text-outline uppercase">SESSION DATE:</span>
+            <span class="text-white font-bold" id="passDate">2025-11-20</span>
+          </div>
+          <div class="flex justify-between py-1 border-b border-surface-container-highest">
+            <span class="text-outline uppercase">CHASSIS SPEC:</span>
+            <span class="text-outline" id="passChassisDisplay">CHASSIS #014</span>
+          </div>
+        </div>
+
+        <!-- Simulated Barcode / QR -->
+        <div class="p-3 bg-surface-container-low border border-surface-container-highest text-center space-y-1">
+          <div class="h-10 flex items-center justify-center gap-1 opacity-70">
+            <div class="w-1 h-full bg-white"></div>
+            <div class="w-0.5 h-full bg-white"></div>
+            <div class="w-2 h-full bg-white"></div>
+            <div class="w-1 h-full bg-white"></div>
+            <div class="w-3 h-full bg-white"></div>
+            <div class="w-0.5 h-full bg-white"></div>
+            <div class="w-2 h-full bg-white"></div>
+            <div class="w-1 h-full bg-white"></div>
+            <div class="w-0.5 h-full bg-white"></div>
+            <div class="w-2 h-full bg-white"></div>
+            <div class="w-3 h-full bg-white"></div>
+            <div class="w-1 h-full bg-white"></div>
+          </div>
+          <span class="text-[9px] font-label-sm text-outline uppercase tracking-widest block">TELEMETRY AUTHENTICATION TOKEN // VALID FOR CIRCUIT ACCESS</span>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2 pt-2">
+          <button class="py-2.5 bg-surface-container hover:bg-surface-container-high border border-surface-container-highest text-on-surface font-label-md text-label-sm uppercase transition-all flex items-center justify-center gap-1.5" onclick="window.print()">
+            <span class="material-symbols-outlined text-sm">print</span>
+            <span>PRINT PASS</span>
+          </button>
+          <button class="py-2.5 bg-secondary-container text-white font-label-md text-label-sm uppercase tracking-wider redline-glow hover:bg-on-secondary transition-all" onclick="ApexApp.closeDigitalPassModal()">
+            DONE
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- DRAWER: PADDOCK GARAGE SHORTLIST                                          -->
+  <!-- ========================================================================= -->
+  <div class="fixed inset-y-0 right-0 z-50 w-full sm:w-96 bg-surface-container-lowest border-l border-surface-container-highest p-6 space-y-6 shadow-2xl hidden" id="garageDrawer">
+    <div class="flex items-center justify-between border-b border-surface-container-highest pb-4">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-secondary-container">garage</span>
+        <h3 class="text-headline-sm font-headline-sm text-white uppercase text-xl font-bold">PADDOCK GARAGE</h3>
+      </div>
+      <button class="text-outline hover:text-white p-1" onclick="ApexApp.closeGarageDrawer()">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+
+    <div class="space-y-3 overflow-y-auto max-h-[70vh] pr-1" id="garageItemsList">
+      <!-- Injected via ApexApp.openGarageDrawer() -->
+    </div>
+
+    <div class="border-t border-surface-container-highest pt-4">
+      <button class="w-full py-3 bg-secondary-container text-white font-label-md text-label-md uppercase tracking-wider redline-glow hover:bg-on-secondary transition-all" onclick="ApexApp.closeGarageDrawer(); ApexApp.openTestRideModal();">
+        SCHEDULE GARAGE AUDITION
+      </button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/bikes-data.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
